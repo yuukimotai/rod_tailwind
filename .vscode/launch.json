@@ -3,10 +3,13 @@
   "configurations": [
     {
       "type": "rdbg",
-      "name": "Debug current file with rdbg",
+      "name": "Run rails server",
+      "rdbgPath": "bundle exec rdbg", // Use the debug.gem described in the Gemfile
       "request": "launch",
-      "script": "${file}",
-      "useTerminal": true
+      "command": "bin/rails", // Breakpoints do not work with "rails".
+      "script": "s", // launch rails server with debugger
+      "args": [],
+      "askParameters": false // Do not ask startup parameter any more
     }
   ]
 }

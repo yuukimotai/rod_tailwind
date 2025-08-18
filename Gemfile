@@ -5,7 +5,8 @@ gem "rodauth-rails"
 gem "rom-rails"
 gem "rom-sql"
 gem "dotenv"
-gem "sequel"
+# gem "sequel"
+# gem "sequel-rails"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.2.2", ">= 7.2.2.2"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
@@ -63,3 +64,7 @@ gem "argon2", "~> 2.3", require: false
 # Used by Rodauth for rendering built-in view and email templates
 gem "tilt", "~> 2.4", require: false
 
+# Used by Rodauth for password hashing
+gem "argon2", "~> 2.3", require: false
+# Used by Rodauth for rendering built-in view and email templates
+gem "tilt", "~> 2.4", require: false
