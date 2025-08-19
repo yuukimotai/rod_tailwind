@@ -1,12 +1,17 @@
-<% if post.id %>
-  <%= form_with(url: post_path(post), method: :patch) do |form| %>
-    <%= form.text_field :title %>
-    <%= form.submit "更新する" %>
+<%= form_with(model: post, class: "contents") do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul class="list-disc ml-6">
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
-<% else %>
-  <%= form_with(url: posts_path, method: :post,model: post, local: true) do |form| %>
-    <%= form.text_field :title %>
-    <h1>投稿テスト</h1>
-    <%= form.submit "投稿する" %>
-  <% end %>
+
+  <div class="inline">
+    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+  </div>
 <% end %>

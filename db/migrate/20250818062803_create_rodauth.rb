@@ -7,8 +7,8 @@ Sequel.migration do
     end
 
     create_table :users do
-      column :id, :Bignum, null: false
-      primary_key :uuid, :uuid, null: false, default: Sequel.function(:gen_random_uuid)
+      primary_key :id, :Bignum, null: false
+      column :uuid, :uuid, null: false, default: Sequel.function(:gen_random_uuid)
       citext :email, null: false
       constraint :valid_email, email: /^[^,;@ \r\n]+@[^,@; \r\n]+\.[^,@; \r\n]+$/
       Integer :status, null: false, default: 1
@@ -18,8 +18,8 @@ Sequel.migration do
 
     # Used by the password reset feature
     create_table :user_password_reset_keys do
-      column :id, :Bignum, null: false
-      foreign_key :uuid, :users, type: :uuid
+      foreign_key :id, :users, type: :Bignum, null: false
+      column :uuid, :users, type: :uuid
       String :key, null: false
       DateTime :deadline, null: false
       DateTime :email_last_sent, null: false, default: Sequel::CURRENT_TIMESTAMP
@@ -27,8 +27,8 @@ Sequel.migration do
 
     # Used by the account verification feature
     create_table :user_verification_keys do
-      column :id, :Bignum, null: false
-      foreign_key :uuid, :users, type: :uuid
+      foreign_key :id, :users, type: :Bignum, null: false
+      column :uuid, :users, type: :uuid
       String :key, null: false
       DateTime :requested_at, null: false, default: Sequel::CURRENT_TIMESTAMP
       DateTime :email_last_sent, null: false, default: Sequel::CURRENT_TIMESTAMP
@@ -36,8 +36,8 @@ Sequel.migration do
 
     # Used by the verify login change feature
     create_table :user_login_change_keys do
-      column :id, :Bignum, null: false
-      foreign_key :uuid, :users, type: :uuid
+      foreign_key :id, :users, type: :Bignum, null: false
+      column :uuid, :users, type: :uuid
       String :key, null: false
       String :login, null: false
       DateTime :deadline, null: false
@@ -45,8 +45,8 @@ Sequel.migration do
 
     # Used by the remember me feature
     create_table :user_remember_keys do
-      column :id, :Bignum, null: false
-      foreign_key :uuid, :users, type: :uuid
+      foreign_key :id, :users, type: :Bignum, null: false
+      column :uuid, :users, type: :uuid
       String :key, null: false
       DateTime :deadline, null: false
     end

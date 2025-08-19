@@ -427,9 +427,11 @@ DEPENDENCIES
   rails (~> 7.2.2, >= 7.2.2.2)
   rodauth-rails
   rom-rails
+  rom-repository
   rom-sql
   rubocop-rails-omakase
   selenium-webdriver
+  sequel
   sprockets-rails
   stimulus-rails
   tailwindcss-rails
