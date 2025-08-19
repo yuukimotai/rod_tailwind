@@ -1,5 +1,24 @@
 require 'rom'
 require_relative '../models/post'
+
+class PostForm
+  include ActiveModel::Model
+  include ActiveModel::Attributes
+  include ActiveModel::Conversion
+
+  attribute :title, :string
+  attribute :body, :string
+
+  validates :title, presence: true
+  validates :body, presence: true
+
+  def persisted?
+    false
+  end
+end
+
+PostForm = Struct.new
+
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
 
@@ -19,6 +38,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
+    @post = PostForm.new
   end
 
   # GET /posts/1/edit
